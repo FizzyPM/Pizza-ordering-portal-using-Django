@@ -26,7 +26,7 @@ class Menu(models.Model):
 
 class OrderDetails(models.Model):
     order_id = models.AutoField(primary_key=True)
-    c_id = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="c_id")
+    c_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True)
     address = models.CharField(max_length=250)
     amount = models.PositiveIntegerField(default=0)
@@ -36,8 +36,8 @@ class OrderDetails(models.Model):
 
 
 class OrderedItems(models.Model):
-    o_id = models.ForeignKey(OrderDetails, on_delete=models.CASCADE, related_name="o_id")
-    i_id = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name="i_id")
+    o_id = models.ForeignKey(OrderDetails, on_delete=models.CASCADE)
+    i_id = models.ForeignKey(Menu, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
 
     def __str__(self):

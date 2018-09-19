@@ -8,7 +8,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        <link href="static/scripts/main.css" rel="stylesheet">
+        <link href="../static/scripts/main.css" rel="stylesheet">
     </head>
     <body>
         <!-- The Modal -->
@@ -63,10 +63,10 @@
                 {% endfor %}
             </tbody> 
         </table>
-        <button type="button" class="btn btn-danger" style="margin-left: 43%;" >Place Order</button>
+        <button type="button" class="btn btn-danger" style="margin-left: 43%;" id="placeorder">Place Order</button>
         <br/><br/><br/>
-        <div style="margin-left: 39%;">Currently logged in as: {{ user.username }}</div>
+        <div style="margin-left: 38%;">Currently logged in as: {{ user.username }}</div>
         <div style="margin-left: 45%;"><a href="{% url 'logout' %}">Logout</a></div>
-    <script src="static/scripts/main.js"></script>
+    <script src="../static/scripts/main.js"></script>
     </body>
 </html>
