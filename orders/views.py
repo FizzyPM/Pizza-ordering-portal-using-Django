@@ -93,6 +93,15 @@ def confirm_order(request):
         return JsonResponse({'Invalid request': "Go get some sleep"})
 
 
+def deletecookie(request):
+    if request.method == 'POST':
+        n = request.POST["len"]
+        # import pdb; pdb.set_trace()
+        response = JsonResponse({'message': 'Cart Cleared'})
+        for i in range(int(n)):
+            response.delete_cookie('item-details' + str(i))
+    return response
+
 # def setcookie(request):
 #     response = HttpResponse("Cookie Set")
 #     response.set_cookie('java-tutorial', 'javatpoint.com')
@@ -100,11 +109,5 @@ def confirm_order(request):
 
 
 # def getcookie(request):
-#     tutorial  = request.COOKIES['java-tutorial']  
-#     return HttpResponse("java tutorials @: "+  tutorial); 
-
-
-# def deletecookie(request):
-#     response = HttpResponse("cookies cleared")
-#     response.delete_cookie("java-tutorial")
-#     return response
+#     tutorial  = request.COOKIES['java-tutorial']
+#     return HttpResponse("java tutorials @: "+  tutorial);

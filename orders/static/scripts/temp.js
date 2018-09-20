@@ -66,6 +66,9 @@ $(function() {
                     alert('Got an error dude');
                 }
             });
+        }
+        else {
+            alert('Where the shit are you ?')
         }        
     });
 

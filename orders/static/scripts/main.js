@@ -61,6 +61,7 @@ $(function() {
         //console.log('#' + (that.cells[2]).id);
     });
 
+  
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie != '') {
@@ -76,6 +77,23 @@ $(function() {
         }
         return cookieValue;
     }
+    
+    $("#clearcart").click(function(){
+        // console.log(dict.length);
+        $.ajax({
+            url : "delcook/",
+            type : "POST",
+            headers: { "X-CSRFToken": getCookie("csrftoken") } ,
+            data : {'len': dict.length},
+            success : function(json) {
+                console.log(json['message'])
+                window.location.href="";
+            },
+            error : function(json) { 
+                alert('Something went wrong');
+            }
+        });
+    });
 
     $("#placeorder").click(function(){
         console.log('Place my order B*tch');
@@ -92,7 +110,7 @@ $(function() {
                     window.location.href="placeorder/";
                 },
                 error : function(json) { 
-                    alert('Under Construction');
+                    alert('we blocked you');
                 }
             });
         }

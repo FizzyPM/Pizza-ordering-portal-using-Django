@@ -11,8 +11,8 @@ urlpatterns = [
     path("order/", views.order_view, name="order"),
     path("placeorder/", TemplateView.as_view(template_name='placeorder.html')),
     path("placeorder/confirm/", views.confirm_order, name="confirm"),
+    path('delcook/', views.deletecookie, name="delcook"),
 
     # path('scookie',views.setcookie),  
     # path('gcookie',views.getcookie),
-    # path('dcookie',views.deletecookie)
 ]
