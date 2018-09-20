@@ -8,7 +8,7 @@ from django.http import JsonResponse
 import json
 
 
-def menu(request):
+def cart(request):
     context = {
         "items": Menu.objects.all()
     }

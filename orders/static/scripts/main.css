@@ -1,19 +1,22 @@
 .table {
     width:60%;
-    margin-left: 20%;
-    margin-top: 40px;
+    margin-left:auto; 
+    margin-right:auto;
 }
-#heading {
-    margin-left: 43%;
+#heading1 {
     color: #d9534f;
-    text-shadow: 2px 2px black;
-    margin-top: 20px;
-    font-weight: bold;
+    text-shadow: 2px 2px #992d29;
 }
 #heading2 {
-    margin-left: 38%;
-    color: #428bca;
-    text-shadow: 2px 2px black;
+    color: #428bca;   
+    text-shadow: 2px 2px #323aa0; 
+}
+#heading3 {
+    color: #343a40;  
+    text-shadow: 2px 2px #b1aeae;  
+}
+.heading{
+    text-align: center;
     margin-top: 20px;
     font-weight: bold;
 }
