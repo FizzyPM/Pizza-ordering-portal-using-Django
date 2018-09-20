@@ -12,7 +12,7 @@ urlpatterns = [
     path("placeorder/", TemplateView.as_view(template_name='placeorder.html')),
     path("placeorder/confirm/", views.confirm_order, name="confirm"),
 
-    path('scookie',views.setcookie),  
-    path('gcookie',views.getcookie),
-    path('dcookie',views.deletecookie)
+    # path('scookie',views.setcookie),  
+    # path('gcookie',views.getcookie),
+    # path('dcookie',views.deletecookie)
 ]

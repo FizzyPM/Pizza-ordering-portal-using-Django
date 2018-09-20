@@ -64,10 +64,10 @@ def logout_view(request):
 def order_view(request):
     if request.method == 'POST':
         # import pdb; pdb.set_trace()
-        length = request.POST['len']
+        obj = json.loads(request.POST['data'])
         response = JsonResponse({'message': 'Redirecting...'})
-        for i in range(int(length)):
-            response.set_cookie('item-details' + str(i), str(request.POST['data[' + str(i) + '][item_id]']) + '--' + str(request.POST['data[' + str(i) + '][item_name]']) + '--' + str(request.POST['data[' + str(i) + '][quantity]']) + '--' + str(request.POST['data[' + str(i) + '][bill]']))
+        for i in range(len(obj)):
+            response.set_cookie('item-details' + str(i), str(obj[i]['item_id']) + '--' + (obj[i]['item_name']) + '--' + str(obj[i]['quantity']) + '--' + str(obj[i]['bill']))
         # import pdb; pdb.set_trace()
         return response
     else:
@@ -90,25 +90,21 @@ def confirm_order(request):
             response.delete_cookie('item-details' + str(i))
         return response
     else:
-        return JsonResponse({'Invalid request': "Go get some sleep"})       
+        return JsonResponse({'Invalid request': "Go get some sleep"})
 
 
-def setcookie(request):
-    response = HttpResponse("Cookie Set")
-    response.set_cookie('java-tutorial', 'javatpoint.com')
-    # response.set_cookie('c-tutorial', 'ctpoint.com')
-    # response.set_cookie('py-tutorial', 'pytpoint.com')
-    return response
+# def setcookie(request):
+#     response = HttpResponse("Cookie Set")
+#     response.set_cookie('java-tutorial', 'javatpoint.com')
+#     return response
 
 
-def getcookie(request):
-    tutorial  = request.COOKIES['java-tutorial']  
-    return HttpResponse("java tutorials @: "+  tutorial); 
+# def getcookie(request):
+#     tutorial  = request.COOKIES['java-tutorial']  
+#     return HttpResponse("java tutorials @: "+  tutorial); 
 
 
-def deletecookie(request):
-    response = HttpResponse("cookies cleared")
-    response.delete_cookie("java-tutorial")
-    # response.delete_cookie("py-tutorial")
-    # response.delete_cookie("c-tutorial")
-    return response
+# def deletecookie(request):
+#     response = HttpResponse("cookies cleared")
+#     response.delete_cookie("java-tutorial")
+#     return response

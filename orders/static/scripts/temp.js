@@ -3,12 +3,13 @@ $(function() {
     var bill=0;
     var dict={};
     let i=0;
-    $.each(document.cookie.split(/; */), function()  {
+    $.each(document.cookie.split(/; */), function() {
         var tr = $("<tr>");
         var splitCookie = this.split('=');
         // name is splitCookie[0], value is splitCookie[1]
         if((splitCookie[0]).startsWith("item-details")){
-            let str = (splitCookie[1]).substring(1, (splitCookie[1]).length-1);
+            // let str = (splitCookie[1]).substring(1, (splitCookie[1]).length-1);
+            let str = splitCookie[1]
             let ar = str.split('--');
             bill = bill + parseInt(ar[3]);
             dict[i]={'item_id':ar[0],'quantity':ar[2]}

@@ -10,6 +10,23 @@ $(function() {
     });
 
     var dict = [];
+    $.each(document.cookie.split(/; */), function() {
+        var splitCookie = this.split('=');
+        // name is splitCookie[0], value is splitCookie[1]
+        if((splitCookie[0]).startsWith("item-details")){
+            // let str = (splitCookie[1]).substring(1, (splitCookie[1]).length-1);
+            let str = splitCookie[1] ; 
+            let ar = str.split('--');
+            // console.log(ar[2]);
+            $("#"+ar[0]).html(ar[2])
+            dict.push({
+                item_id : parseInt(ar[0]) ,
+                item_name: ar[1],
+                quantity:  parseInt(ar[2]),
+                bill : parseInt(ar[3])
+            });
+        }
+    });
     //var dict = {};
     $("#plus").click(function(){
         //console.log($("#theInput").val());
@@ -23,17 +40,19 @@ $(function() {
             //console.log("updated");
             for(let i=0;i<dict.length;i++){
                 if((dict[i])['item_id']==$("#hidden_item_id").html()){
-                    dict.splice(i, 1); //At position i remove the 1 item
+                    dict[i]['quantity'] = parseInt($("#theInput").val()); //At position i remove the 1 item
                 }
             }
         }
         //console.log($("#item_name").html());
-        dict.push({
-            item_id : $("#hidden_item_id").html() ,
-            item_name:   $("#item_name").html(),
-            quantity:  $("#theInput").val(),
-            bill : parseInt($("#theInput").val()) * parseInt($("#hidden_base_price").html())
-        });
+        else{
+            dict.push({
+                item_id : parseInt($("#hidden_item_id").html()) ,
+                item_name: $("#item_name").html(),
+                quantity:  parseInt($("#theInput").val()),
+                bill : parseInt($("#theInput").val()) * parseInt($("#hidden_base_price").html())
+            });
+        }
         // dict[$("#item_name").html()] = $("#theInput").val();
         console.log(dict);
         // $("#"+(that.cells[2]).id).html(String($("#theInput").val()))
@@ -59,21 +78,21 @@ $(function() {
     }
 
     $("#placeorder").click(function(){
-        console.log('Please Place my order B*tch');
+        console.log('Place my order B*tch');
         if(dict.length == 0)
-            alert("You didn't pick anything cool")
+            alert("Fortunately you didn't pick anything")
         else{
             $.ajax({
                 url : "order/",
                 type : "POST",
                 headers: { "X-CSRFToken": getCookie("csrftoken") } ,
-                data : {"data":dict , "len":dict.length},
+                data : {'data': JSON.stringify(dict)},
                 success : function(json) {
                     console.log(json['message'])
                     window.location.href="placeorder/";
                 },
                 error : function(json) { 
-                    alert(json['message']);
+                    alert('Under Construction');
                 }
             });
         }
