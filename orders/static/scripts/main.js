@@ -40,7 +40,15 @@ $(function() {
             //console.log("updated");
             for(let i=0;i<dict.length;i++){
                 if((dict[i])['item_id']==$("#hidden_item_id").html()){
-                    dict[i]['quantity'] = parseInt($("#theInput").val()); //At position i remove the 1 item
+                    if(parseInt($("#theInput").val()) == 0){
+                        dict.splice(0,1);
+                        $("#"+$("#hidden_item_id").html()).html('-');
+                        console.log(dict);
+                        $("#theInput").val(1);
+                        return;
+                    }
+                    dict[i]['quantity'] = parseInt($("#theInput").val());
+                    dict[i]['bill'] = parseInt($("#theInput").val()) * parseInt($("#hidden_base_price").html())
                 }
             }
         }
