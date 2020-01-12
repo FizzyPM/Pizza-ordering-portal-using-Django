@@ -1,5 +1,5 @@
-# Project : P177@
-
+# Project Pizza
+### Aims:
 Menu: Your web application should support all of the available menu items for Pizza & Subs. It’s up to you, based on analyzing the menu and the various types of possible ordered items (small vs. large, toppings, additions, etc.) to decide how to construct your models to best represent the information. Add your models to orders/models.py, make the necessary migration files, and apply those migrations.
 
 Adding Items: Using Django Admin, site administrators (restaurant owners) should be able to add, update, and remove items on the menu. Add all of the items from the Pinnochio’s menu into your database using either the Admin UI or by running Python commands in Django’s shell.
@@ -11,4 +11,10 @@ Placing an Order: Once there is at least one item in a user’s shopping cart, t
 
 Viewing Orders: Site administrators should have access to a page where they can view any orders that have already been placed.
 
-Personal Touch: Add at least one additional feature of your choosing to the web application.
+### How to run ?
+Execute the following commands:
+```
+pip install django
+python manage.py migrate
+python manage.py runserver
+```
